@@ -1,0 +1,15 @@
+.env
+.git
+.venv
+data/
+tests/
+html/
+*.md
+*.toml
+uv.lock
+__pycache__
+*.pyc
+*.pyo
+.pytest_cache
+dist/
+*.egg-info/
