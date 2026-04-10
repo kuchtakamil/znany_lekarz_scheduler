@@ -117,8 +117,19 @@ class MonitorScheduler:
             new_slots = self._state_manager.find_new_slots(slots, known_ids)
 
             is_bootstrap = doctor.url in self._bootstrap_doctors
-            if new_slots and not is_bootstrap:
-                await self._notifier.send_new_slots(new_slots)
+            slots_to_notify = new_slots
+            if doctor.earlier_than is not None:
+                slots_to_notify = [s for s in new_slots if s.dt.date() < doctor.earlier_than]
+                filtered = len(new_slots) - len(slots_to_notify)
+                if filtered:
+                    log.debug(
+                        "slots_filtered_by_earlier_than",
+                        doctor=doctor.name,
+                        filtered=filtered,
+                        earlier_than=doctor.earlier_than.isoformat(),
+                    )
+            if slots_to_notify and not is_bootstrap:
+                await self._notifier.send_new_slots(slots_to_notify)
             elif is_bootstrap:
                 log.info("bootstrap_no_notify", doctor=doctor.name, slots=len(slots))
                 self._bootstrap_doctors.discard(doctor.url)

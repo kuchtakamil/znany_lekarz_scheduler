@@ -11,7 +11,7 @@ from .utils.logger import get_logger, setup_logging
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Monitor dostepnosci terminow na znany lekarz.pl",
+        description="Monitor dostepnosci terminow na znanylekarz.pl",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 commands:

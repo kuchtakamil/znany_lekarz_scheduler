@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from datetime import time
+from datetime import date, time
 from typing import Literal
 
 from pydantic import BaseModel, field_validator
@@ -11,6 +11,7 @@ class DoctorConfig(BaseModel):
     url: str
     speciality: str | None = None
     check_priority: int = 1  # 1=high, 3=low
+    earlier_than: date | None = None  # notify only if slot is before this date
 
 
 class ScheduleConfig(BaseModel):

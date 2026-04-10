@@ -98,8 +98,8 @@ class BrowserManager:
         """Check session validity: if SSO redirects away from the login page, we're logged in."""
         page = await self.get_page()
         try:
-            await page.goto("https://l.znany lekarz.pl/", wait_until="domcontentloaded", timeout=15000)
+            await page.goto("https://l.znanylekarz.pl/", wait_until="domcontentloaded", timeout=15000)
             # If redirected away from the SSO login domain, session is valid
-            return "l.znany lekarz.pl" not in page.url
+            return "l.znanylekarz.pl" not in page.url
         except Exception:
             return False

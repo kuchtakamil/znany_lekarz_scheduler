@@ -8,7 +8,7 @@ from ..utils.delays import post_login_delay
 
 log = structlog.get_logger(__name__)
 
-LOGIN_URL = "https://l.znany lekarz.pl/"
+LOGIN_URL = "https://l.znanylekarz.pl/"
 EMAIL_SELECTOR = "#username"        # input[name="_username"]
 PASSWORD_SELECTOR = "#password"     # input[name="_password"]
 SUBMIT_SELECTOR = 'button[data-test-id="btn-login"]'

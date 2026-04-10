@@ -1,9 +1,9 @@
 [schedule]
 check_interval_minutes = 45
-active_hours_start = "07:00"
-active_hours_end = "22:30"
+active_hours_start = "09:00"
+active_hours_end = "23:40"
 active_days = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"]
-jitter_percent = 25
+jitter_percent = 30
 
 [browser]
 headless = true
@@ -15,8 +15,8 @@ timezone = "Europe/Warsaw"
 [notifications]
 cooldown_minutes = 120
 apprise_urls = [
-    "tgram://BOT_TOKEN/CHAT_ID",
-    # "mailto://user:app_pass@gmail.com?to=me@gmail.com",
+#    "tgram://BOT_TOKEN/CHAT_ID",
+     "mailto://user:app_pass@gmail.com?to=me@gmail.com",
     # "pover://USER_KEY@APP_TOKEN",
 ]
 
@@ -25,9 +25,11 @@ name = "Dr Jan Kowalski"
 url = "https://www.znanylekarz.pl/jan-kowalski/kardiolog/warszawa"
 speciality = "Kardiologia"
 check_priority = 1
+# earlier_than = "2026-05-01"  # notify only if slot is before this date (YYYY-MM-DD)
 
 [[doctors]]
 name = "Dr Anna Nowak"
 url = "https://www.znanylekarz.pl/anna-nowak/dermatolog/krakow"
 speciality = "Dermatologia"
 check_priority = 2
+earlier_than = "2026-06-30"  # notify only if slot is before 2026-06-30
