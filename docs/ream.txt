@@ -1,0 +1,38 @@
+Oto kolejność kroków:
+
+  Krok 1 — Zaloguj się (raz, zapisuje sesję):
+  python -m znany_lekarz_scheduler.main --setup
+  Otworzy się okno przeglądarki — zaloguj się ręcznie na znany lekarz.pl. Sesja zostanie zapisana w data/cookies/session.json.
+
+  Krok 2 — Przetestuj powiadomienie:
+  python -m znany_lekarz_scheduler.main --test-notify
+
+  Krok 3 — Uruchom monitoring:
+  python -m znany_lekarz_scheduler.main run
+
+  ---
+  Kilka rzeczy warto wiedzieć przed uruchomieniem:
+
+  - Upewnij się że doktorzy w config.toml mają prawdziwe URL-e z znany lekarz.pl (w przykładowym configu są fikcyjne).
+  - Pierwsze uruchomienie run nie wyśle powiadomień (bootstrap — tylko zapisuje stan aktualnych terminów). Powiadomienie dostaniesz dopiero gdy pojawi się nowy termin.
+  - Jeśli chcesz szybko zobaczyć czy scraping działa (bez czekania na scheduler), dodaj --log-level DEBUG.
+
+
+
+Opcja A: Wygeneruj nowy klucz na VPS (zalecane)
+
+  Na VPS:
+  ssh-keygen -t ed25519 -C "vps-github"
+  cat ~/.ssh/id_ed25519.pub
+
+  Skopiuj wyświetlony klucz publiczny i dodaj go w GitHub:
+  Settings → SSH and GPG keys → New SSH key
+
+  ---
+Opcja B: SSH Agent Forwarding (bez kopiowania kluczy)
+
+  Lokalnie w ~/.ssh/config dodaj:
+  Host twoj-vps-ip
+      ForwardAgent yes
+
+  Potem połącz się z VPS przez ssh -A user@vps — GitHub będzie używał Twojego lokalnego klucza bez kopiowania go na serwer.

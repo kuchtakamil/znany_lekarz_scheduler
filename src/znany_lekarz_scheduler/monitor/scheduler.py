@@ -44,12 +44,9 @@ class MonitorScheduler:
         self._scheduler = AsyncIOScheduler()
         self._stop_event = asyncio.Event()
 
-        # Bootstrap: if no state file exists yet, seed state without notifying
-        self._bootstrap_doctors: set[str] = (
-            {d.url for d in config.doctors}
-            if not state_manager.has_state()
-            else set()
-        )
+        # Always seed state on first run of this session without notifying.
+        # Prevents spurious notifications after restart when state is stale.
+        self._bootstrap_doctors: set[str] = {d.url for d in config.doctors}
 
     # ── Active-hours guard ────────────────────────────────────────────────────
 

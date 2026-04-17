@@ -50,7 +50,7 @@ class AppriseNotifier(BaseNotifier):
                 eligible.append(slot)
 
         if skipped_doctors:
-            log.debug("cooldown_skipped", doctors=sorted(skipped_doctors))
+            log.info("cooldown_skipped", doctors=sorted(skipped_doctors), cooldown_minutes=self._config.cooldown_minutes)
 
         if not eligible:
             return

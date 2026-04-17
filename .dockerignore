@@ -5,8 +5,6 @@ data/
 tests/
 html/
 *.md
-*.toml
-uv.lock
 __pycache__
 *.pyc
 *.pyo
